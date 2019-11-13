@@ -1,0 +1,5 @@
+C:\Users\morozov_ra\source\repos\TrafficLight\TrafficLight\bin\Debug\TrafficLight.dll
+C:\Users\morozov_ra\source\repos\TrafficLight\TrafficLight\bin\Debug\TrafficLight.pdb
+C:\Users\morozov_ra\source\repos\TrafficLight\TrafficLight\obj\Debug\TrafficLight.csproj.CoreCompileInputs.cache
+C:\Users\morozov_ra\source\repos\TrafficLight\TrafficLight\obj\Debug\TrafficLight.dll
+C:\Users\morozov_ra\source\repos\TrafficLight\TrafficLight\obj\Debug\TrafficLight.pdb
