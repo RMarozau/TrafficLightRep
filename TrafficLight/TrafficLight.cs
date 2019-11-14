@@ -22,11 +22,6 @@ namespace TrafficLight
             _trafficLightTime = new TrafficLightTime(10);
             this.Second = _trafficLightTime.Second;
             _sourceOfPower = new SourceOfPower(true);
-            if (_sourceOfPower.GetElectrisity() == true)
-            {
-                StartTimer(new Timer(1000));
-
-            }
         }
         /// <summary>
         /// SourceOfPower либо false, либо true;
@@ -34,15 +29,11 @@ namespace TrafficLight
         /// <param name="source"></param>
         public TrafficLight(SourceOfPower source)
         {
-            
+
             _trafficLightColor = new TrafficLightColor(TrafficLightColor.Colors.Red);
             _trafficLightTime = new TrafficLightTime(10);
             this.Second = _trafficLightTime.Second;
-            if (source.GetElectrisity() == true)
-            {
-                StartTimer(new Timer(1000));
-
-            }
+            _sourceOfPower = source;
         }
         /// <summary>
         /// Ввод всех параметров вручную, где source - источник питания, TrafficLightColor - цвет с которого нужно начать работу светофора, trafficLightTime - время работы красной и зеленой лампы
@@ -56,12 +47,8 @@ namespace TrafficLight
             this._trafficLightColor = TrafficLightColor;
             this.Second = trafficLightTime.Second;
             this._trafficLightTime = trafficLightTime;
-           // _trafficLightTime = new TrafficLightTime(10);
-            if (source.GetElectrisity() == true)
-            {
-                StartTimer(new Timer(1000));
-
-            }
+            _sourceOfPower = source;
+            // _trafficLightTime = new TrafficLightTime(10);
         }
 
         /// <summary>
@@ -69,7 +56,7 @@ namespace TrafficLight
         /// </summary>
         public void LogicTrafficLight()
         {
-             
+
             if (_trafficLightTime.Second == 3)
             {
                 _trafficLightColor.SetNowColor(TrafficLightColor.Colors.Yellow);
@@ -87,17 +74,22 @@ namespace TrafficLight
                 _trafficLightTime.SetSecond(Second);
             }
             _trafficLightTime.Second--;
+
+
         }
         /// <summary>
         /// Старт таймера который запускает событие в коснольном приложении.
         /// </summary>
         /// <param name="aTimer"></param>
-        private void StartTimer(System.Timers.Timer aTimer)
+        public void StartTimer(System.Timers.Timer aTimer, int second)
         {
-            aTimer = new System.Timers.Timer(1000);
-            aTimer.Elapsed += OnTimedEvent;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+            if (_sourceOfPower.Electriсity == true)
+            {
+                aTimer = new System.Timers.Timer(second);
+                aTimer.Elapsed += OnTimedEvent;
+                aTimer.AutoReset = true;
+                aTimer.Enabled = true;
+            }
         }
 
         private void OnTimedEvent(object sender, EventArgs e)
@@ -119,14 +111,14 @@ namespace TrafficLight
             {
                 Console.WriteLine($"Цвет светофора Желтый, Приготовились ехать!: {_trafficLightTime.Second}");
             }
-            
+
         }
-        
+
 
     }
 
-        
-    
-   
+
+
+
 
 }
