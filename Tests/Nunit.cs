@@ -7,7 +7,6 @@ using FluentAssertions;
 using NUnit.Framework;
 using TrafficLight;
 using Bogus;
-using Moq;
 
 namespace Tests
 {
@@ -15,7 +14,7 @@ namespace Tests
     {
         SourceOfPower SourceOfPower;
         TrafficLight.TrafficLight trafficLight;
-        
+        TrafficLight.TrafficLightColor trafficLightColor;
 
         [SetUp]
         public void Setup_SourceOfPower()
@@ -51,16 +50,6 @@ namespace Tests
         public void Color_Test_Shold_Be(TrafficLightColor.Colors color)
         {
             color.Should().Be(color, because: $"Для работы класса TrafficLight, цвет должен должен быть = {color}");
-        }
-
-        [Test]
-        public void TrafficLightMockSourceOfPower()
-        {
-            var mockPower = new Mock<SourceOfPower>();
-
-            var trafficLight = new TrafficLight.TrafficLight(mockPower.Object);
-
-            trafficLight.Should().NotBeNull();
         }
     }
 }
